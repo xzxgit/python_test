@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from flask import request, make_response, redirect, render_template,send_from_directory, session
+from flask import request, make_response, redirect, render_template,
+send_from_directory, session
 from flask import Flask
 import pickle
 import os
 import sys
 eval("__import__('os').system('uname -a')")
 exec("__import__('os').system('uname -a')")
-exec(compile(open("test.py").read(), "test.py", 'exec'))
+execfile("test.py")
 
 app = Flask(__name__)
 
@@ -20,10 +21,6 @@ def index():
 
 def cmdinject(request,filename, dirname):
     os.system("ls -l " % dirname)
-    with open(filename, 'wb') as f:
-        f.write(request)
-
-
 
 
 def getUsers(user_id=None):
@@ -51,7 +48,7 @@ exec(sys.argv[1:])
 
 
 
-@app.route('/file')
+
 def sendfile(dirname):
     return send_from_directory(dirname)
 

